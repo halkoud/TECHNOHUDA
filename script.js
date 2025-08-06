@@ -178,7 +178,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.style.transform = 'translateY(0) scale(1)';
   });
 });
-// Handle form submission
+        // Handle form submission
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('.contact-form');
             const submitBtn = document.querySelector('.submit-btn');
@@ -190,8 +190,8 @@ document.querySelectorAll('.project-card').forEach(card => {
                 const formData = new FormData(form);
                 const data = {
                     name: formData.get('name'),
-                    email: formData.get('_replyto'),
-                    subject: formData.get('_subject'),
+                    email: formData.get('email'),
+                    subject: formData.get('subject'),
                     message: formData.get('message')
                 };
                 
