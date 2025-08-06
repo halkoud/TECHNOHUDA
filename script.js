@@ -178,7 +178,6 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.style.transform = 'translateY(0) scale(1)';
   });
 });
-
 // Handle form submission
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('.contact-form');
