@@ -1116,8 +1116,8 @@ nav {
   color: var(--text-secondary);
   line-height: 1.6;
 }
-
-.contact {
+        /* Contact Section - Complete Redesign */
+        .contact {
             padding: 120px 0;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
@@ -1325,7 +1325,6 @@ nav {
                 font-size: 2rem;
             }
         }
-
 /* Footer */
 footer {
   padding: 40px 0;

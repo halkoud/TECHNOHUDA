@@ -149,31 +149,63 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-// Form submission with animation
-const contactForm = document.querySelector('.contact-form');
-const submitBtn = document.querySelector('.submit-btn');
-
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  // Add loading state
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-  submitBtn.style.background = 'var(--logo-purple)';
-  
-  // Simulate form submission
-  setTimeout(() => {
-    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-    submitBtn.style.background = '#4CAF50';
-    
-    // Reset form
-    setTimeout(() => {
-      contactForm.reset();
-      submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
-      submitBtn.style.background = '';
-    }, 2000);
-  }, 2000);
-});
-
+// Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.contact-form');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('_replyto'),
+                    subject: formData.get('_subject'),
+                    message: formData.get('message')
+                };
+                
+                // Update button state
+                submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+                submitBtn.disabled = true;
+                
+                try {
+                    const response = await fetch('https://formspree.io/f/xjkoajdp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    if (response.ok) {
+                        submitBtn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                        form.reset();
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                            submitBtn.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error('Failed to send message');
+                    }
+                } catch (error) {
+                    submitBtn.innerHTML = '<span>Error - Try Again</span><i class="fas fa-exclamation-triangle"></i>';
+                    submitBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }
+            });
+        });
 // Add floating animation to project showcase image
 const showcaseImg = document.querySelector('.showcase-img');
 if (showcaseImg) {
