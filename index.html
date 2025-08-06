@@ -24,7 +24,17 @@
   <nav>
     <div class="logo-container">
       <div class="logo-wrapper">
-        <img src="images\Techu.webp" alt="TechnoHuda Logo" class="logo">
+        <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ff8ac6;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#9b5de5;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="45" fill="url(#logoGradient)" opacity="0.1"/>
+          <path d="M30 25 L70 25 L70 35 L40 35 L40 45 L65 45 L65 55 L40 55 L40 75 L30 75 Z" fill="url(#logoGradient)"/>
+          <circle cx="75" cy="65" r="8" fill="url(#logoGradient)"/>
+        </svg>
         <div class="logo-glow"></div>
       </div>
       <span class="site-name">TechnoHuda</span>
@@ -37,13 +47,14 @@
       <li><a href="#goals"><i class="fas fa-star"></i> Goals</a></li>
       <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
-    <div class="mobile-menu-toggle">
+    <div class="mobile-menu-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </nav>
 </header>
+
 
 <!-- HERO -->
 <section class="hero">

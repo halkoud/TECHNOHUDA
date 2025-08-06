@@ -1,4 +1,34 @@
 // script.js
+function toggleMenu() {
+  const navMenu = document.querySelector('.nav-menu');
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  
+  navMenu.classList.toggle('active');
+  toggle.classList.toggle('active');
+}
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    const navMenu = document.querySelector('.nav-menu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    navMenu.classList.remove('active');
+    toggle.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  const navMenu = document.querySelector('.nav-menu');
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('nav');
+  
+  if (!nav.contains(e.target) && navMenu.classList.contains('active')) {
+    navMenu.classList.remove('active');
+    toggle.classList.remove('active');
+  }
+});
 
 // Typing Animation
 document.addEventListener("DOMContentLoaded", () => {
